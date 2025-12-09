@@ -48,8 +48,9 @@ bash launch_train_{depth/normal/matting}.sh
 ```
 
 ## Inference
-1. Make sure to set the correct paths in ```inference_{depth/normal/matting}.py```.
-2. Start inference
+1. Download checkpoints to ```checkpoints/{depth/normal/matting}```
+2. Make sure to set the correct paths in ```inference_{depth/normal/matting}.py```.
+3. Start inference
 ```bash
 python D3-Predictor-{Depth/Normal/Matting}/inference_{depth/normal/matting}.py
 ```

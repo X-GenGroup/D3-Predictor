@@ -65,7 +65,7 @@ def chw2hwc(chw):
     return hwc
 
 diffusion_image_size = 768
-ae = AutoencoderKL(repo="/data/xcl/cleandift/model/sd21/stabilityai/stable-diffusion-2-1")
+ae = AutoencoderKL(repo="stabilityai/stable-diffusion-2-1")
 ae = ae.cuda().bfloat16()
 
 
@@ -73,7 +73,7 @@ model_config_path = "configs/sd21_d3_predictor_depth.yaml"
 cfg_model = OmegaConf.load(model_config_path)
 OmegaConf.resolve(cfg_model)
 d3_predictor = hydra.utils.instantiate(cfg_model).model
-state_dict = torch.load("ckeckpoints/depth/depth_checkpoint.pth")
+state_dict = torch.load("../checkpoints/depth/depth_checkpoint.pth")
 
 d3_predictor.load_state_dict(state_dict, strict=False)
 del d3_predictor.visual_experts, d3_predictor.adapters
@@ -152,6 +152,6 @@ for root, dirs, files in os.walk('path/to/rgb/images'):
             depth_colored_hwc = chw2hwc(depth_colored)
             depth_colored_img = Image.fromarray(depth_colored_hwc)
             
-            os.makedirs('inference_res/depth', exist_ok=True)
+            os.makedirs('../inference_res/depth', exist_ok=True)
 
-            depth_colored_img.save(os.path.join('inference_res/depth', name.replace('jpg', 'png')))
+            depth_colored_img.save(os.path.join('../inference_res/depth', name.replace('jpg', 'png')))

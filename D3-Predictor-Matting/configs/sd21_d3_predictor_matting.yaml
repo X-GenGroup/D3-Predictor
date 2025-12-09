@@ -32,7 +32,7 @@ model:
 
   ae:
     _target_: src.ae.AutoencoderKL
-    repo: /data/xcl/cleandift/model/sd21/stabilityai/stable-diffusion-2-1
+    repo: stabilityai/stable-diffusion-2-1
   mapping:
     _target_: src.utils.MappingSpec
     depth: 2

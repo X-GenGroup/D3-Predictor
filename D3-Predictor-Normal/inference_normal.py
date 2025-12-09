@@ -14,7 +14,7 @@ import gc
 import numpy as np
 
 diffusion_image_size = 768
-ae = AutoencoderKL(repo="/data/xcl/cleandift/model/sd21/stabilityai/stable-diffusion-2-1")
+ae = AutoencoderKL(repo="stabilityai/stable-diffusion-2-1")
 ae = ae.cuda().bfloat16()
 
 
@@ -22,7 +22,7 @@ model_config_path = "configs/sd21_d3_predictor_normal.yaml"
 cfg_model = OmegaConf.load(model_config_path)
 OmegaConf.resolve(cfg_model)
 d3_predictor = hydra.utils.instantiate(cfg_model).model
-state_dict = torch.load("/data/xcl/xcl_d3_predictor/normal/normal_checkpoint.pth")
+state_dict = torch.load("../checkpoints/normal/normal_checkpoint.pth")
 
 d3_predictor.load_state_dict(state_dict, strict=False)
 del d3_predictor.visual_experts, d3_predictor.adapters
@@ -32,7 +32,7 @@ d3_predictor = d3_predictor.cuda().bfloat16()
 d3_predictor.requires_grad_(False)
 d3_predictor.eval()
 
-for root, dirs, files in os.walk('/data/xcl/dataSet/agent_images/agent_images-SD-XL/instruction_12'):
+for root, dirs, files in os.walk('path/to/rgb/images'):
     for name in tqdm(files, desc="Processing files", unit="file"):
         file_path = os.path.join(root, name)
         img = Image.open(file_path).convert('RGB')
@@ -58,5 +58,5 @@ for root, dirs, files in os.walk('/data/xcl/dataSet/agent_images/agent_images-SD
 
             img = imgs[0]
 
-            os.makedirs(f'inference_res/normal', exist_ok=True)
-            img.save(os.path.join('inference_res/normal', name.replace('jpg', 'png')))
+            os.makedirs(f'../inference_res/normal', exist_ok=True)
+            img.save(os.path.join('../inference_res/normal', name.replace('jpg', 'png')))

@@ -183,7 +183,7 @@ class StableFeatureAligner(nn.Module):
         self.val_chunk_size = val_chunk_size
         self.use_adapters = use_adapters
 
-        self.repo = "/data/xcl/cleandift/model/sd21/stabilityai/stable-diffusion-2-1"
+        self.repo = "stabilityai/stable-diffusion-2-1"
 
         self.device = None
 
