@@ -62,7 +62,7 @@ python D3-Predictor-{Depth/Normal/Matting}/inference_{depth/normal/matting}.py
 If you find it helpful, please kindly cite the paper.
 ```
 @misc{xia2025mathrmdmathrm3predictornoisefreedeterministicdiffusion,
-      title={$\mathrm{D}^{\mathrm{3}}$-Predictor: Noise-Free Deterministic Diffusion for Dense Prediction}, 
+      title={D³-Predictor: Noise-Free Deterministic Diffusion for Dense Prediction}, 
       author={Changliang Xia and Chengyou Jia and Minnan Luo and Zhuohang Dang and Xin Shen and Bowen Ping},
       year={2025},
       eprint={2512.07062},
